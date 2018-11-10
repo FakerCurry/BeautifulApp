@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/index3_ll"
+    android:orientation="vertical" android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+<ImageView
+    android:id="@+id/index3item_img"
+    android:layout_width="80dp"
+    android:layout_height="100dp"
+    android:scaleType="fitXY"
+    />
+
+    <TextView
+        android:id="@+id/index3item_title"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:text="打哈呵呵"
+        android:gravity="center"
+       android:typeface="serif"
+        android:textStyle="bold"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="3dp"/>
+    <TextView
+        android:id="@+id/index3item_author"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="作者:李白"/>
+
+
+
+</LinearLayout>

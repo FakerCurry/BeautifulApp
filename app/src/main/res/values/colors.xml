@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="appMain">#56A5EB</color>
+    <color name="icon_text">#bfbfbf</color>
+    <color name="white">#ffffff</color>
+    <color name="shape_item_index_rv2_bg">#FDF6E2</color>
+    <color name="shape_item_index_rv2_border">#F9DDC9</color>
+    <color name="shape_item_index_rv2_fontcolor">#EC6F03</color>
+    <color name="line">#D0D0D0</color>
+    <color name="red">#ff4500</color>
+    <color name="black">#000000</color>
+    <color name="white_transparent_70">#BBFFFFFF</color>
+    <color name="black_transparent">#99000000</color>
+</resources>

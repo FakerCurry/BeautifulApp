@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.EpisodeDetailActivity">
+    <include layout="@layout/layout_topbar"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/detail_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textStyle="bold"
+           android:layout_margin="10dp"
+            android:text="段子：你是还洗洗吃"/>
+
+         <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_margin="10dp"
+             android:gravity="center_vertical"
+             android:orientation="horizontal">
+
+             <ImageView
+                 android:layout_width="20dp"
+                 android:layout_height="20dp"
+                 android:src="@drawable/type"
+                 />
+
+              <TextView
+                  android:id="@+id/subname"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="段子手111"
+                  android:layout_marginLeft="5dp"/>
+
+             <ImageView
+                 android:layout_width="20dp"
+                 android:layout_height="20dp"
+                 android:src="@drawable/time"
+                 android:layout_marginLeft="10dp"
+                 />
+
+             <TextView
+                 android:id="@+id/subtime"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="11-22"
+                 android:layout_marginLeft="5dp"/>
+
+
+
+         </LinearLayout>
+
+
+
+
+    </LinearLayout>
+    <View
+        android:layout_width="100dp"
+        android:layout_height="3dp"
+        android:background="@color/black"
+        />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/line"
+        />
+
+    <!--具体内容-->
+
+    <ScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/contain_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+</LinearLayout>

@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.google.android.exoplayer:extension-rtmp-2.8.4">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/extension-rtmp-2.8.4.aar/fa9cdd8f20e40fd2098e6f4cf270242a/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/extension-rtmp-2.8.4.aar/fa9cdd8f20e40fd2098e6f4cf270242a/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.android.exoplayer/extension-rtmp/2.8.4/e236f910fb32481607ba6df2eb4963dcc5fd34ab/extension-rtmp-2.8.4-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

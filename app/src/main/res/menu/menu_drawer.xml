@@ -1,0 +1,36 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/drawer_pay"
+            android:checked="true"
+            android:icon="@drawable/pay"
+            android:title="打赏" />
+
+        <item
+            android:id="@+id/drawer_location"
+            android:checked="true"
+            android:icon="@drawable/location"
+            android:title="定位" />
+        <item
+            android:id="@+id/drawer_video"
+            android:checked="true"
+            android:icon="@drawable/location"
+            android:title="视频" />
+        <item
+            android:id="@+id/drawer_share"
+            android:checked="true"
+            android:icon="@drawable/share"
+            android:title="分享" />
+        <item
+        android:id="@+id/drawer_login"
+        android:checked="true"
+        android:icon="@drawable/qq"
+        android:title="登陆" />
+        <item
+            android:id="@+id/drawer_loginout"
+            android:checked="true"
+            android:icon="@drawable/loginout"
+            android:title="退出" />
+
+    </group>
+</menu>

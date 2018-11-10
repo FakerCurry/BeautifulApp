@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@color/appMain">
+
+    <TextView
+        android:id="@+id/snackbar_love_allselect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:layout_centerVertical="true"
+
+        android:text="全选"/>
+
+    <LinearLayout
+        android:id="@+id/snackbar_love_selectll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_centerVertical="true"
+
+        android:gravity="center_vertical"
+        android:layout_alignParentRight="true"
+        >
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/del"/>
+        <TextView
+            android:id="@+id/snackbar_love_selectnum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="删除(0)"
+            android:textColor="@color/white"
+            />
+    </LinearLayout>
+
+</RelativeLayout>

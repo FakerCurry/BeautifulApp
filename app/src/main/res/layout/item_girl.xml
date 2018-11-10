@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:background="@color/white"
+
+    app:cardCornerRadius="10dp"
+    app:cardElevation="10dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:orientation="vertical">
+        <ImageView
+            android:id="@+id/girlitem_iv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+
+            android:src="@mipmap/ic_launcher"/>
+        <TextView
+            android:id="@+id/girlitem_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="23dp"
+            android:layout_marginRight="20dp"
+            android:text="你好你好你好哈话费的圣克鲁斯发动机哦文件"
+            android:singleLine="true"
+            android:textSize="25sp"
+            android:ellipsize="end"/>
+
+        <View
+            android:layerType="software"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:background="@drawable/shape_line_dash"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"/>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:layout_marginBottom="3dp"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:id="@+id/girlitem_flag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dp"
+                android:background="#cccccc"
+                android:layout_marginLeft="23dp"
+                android:text="好的图片"
+                android:textColor="#aaaaaa"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:gravity="center"
+                android:layout_marginRight="25dp"
+                android:orientation="horizontal">
+                <ImageView
+                    android:visibility="gone"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/time"/>
+                <TextView
+                    android:id="@+id/girlitem_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="12-12"
+                    android:layout_marginRight="2dp"
+                    android:textColor="#aaaaaa"
+                    android:visibility="gone"/>
+                <ImageView
+
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/eye"/>
+                <TextView
+                    android:id="@+id/girlitem_eye"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="x"
+                    android:textColor="#aaaaaa"/>
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+
+
+
+
+
+
+</android.support.v7.widget.CardView>
