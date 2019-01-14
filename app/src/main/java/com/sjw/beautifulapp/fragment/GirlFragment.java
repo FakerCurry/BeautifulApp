@@ -354,7 +354,7 @@ public class GirlFragment extends BaseFragment {
 
                     ArrayList<String> urls=new ArrayList<>();
                     //每个地址对应一张详情图
-                    for (int j=0;j<8;j++){
+                    for (int j=0;j<2;j++){
                         //每张图片的大图的地址
                         String detail_img_url = titleAndHttp.get(i)
                                 .select("a")
@@ -362,10 +362,10 @@ public class GirlFragment extends BaseFragment {
 
                         if (j==0){
 
-                            detail_img_url=detail_img_url;
+                            detail_img_url="https://www.27270.com"+detail_img_url;
                         }else {
                             detail_img_url=detail_img_url.replace(".html",("_"+(j+1)));
-                            detail_img_url=detail_img_url+".html";
+                            detail_img_url="https://www.27270.com"+detail_img_url+".html";
                         }
                         Document document_detail = Jsoup.connect(detail_img_url).timeout(10000).
                                 get();

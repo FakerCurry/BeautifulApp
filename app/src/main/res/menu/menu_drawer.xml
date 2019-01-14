@@ -14,7 +14,7 @@
         <item
             android:id="@+id/drawer_video"
             android:checked="true"
-            android:icon="@drawable/location"
+            android:icon="@drawable/video"
             android:title="视频" />
         <item
             android:id="@+id/drawer_share"

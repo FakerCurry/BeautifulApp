@@ -194,8 +194,8 @@ public class IndexFragment extends BaseFragment implements BGABanner.Adapter<Ima
     private void loadIndex() {
         //加载头部轮播图
         loadData(bannerMainDepth, indexBannerBeanList);
-        //加载所有项数据
-        adapter.setData(indexBeanList);
+//        //加载所有项数据
+//        adapter.setData(indexBeanList);
         if (xrefreshview!=null){
             xrefreshview.stopRefresh();
         }
@@ -250,23 +250,23 @@ public class IndexFragment extends BaseFragment implements BGABanner.Adapter<Ima
             try {
                 Document document = Jsoup.connect("http://www.zhulang.com/").timeout(20000).get();
                 Elements imgs = document
-                        .select("div.focus-img")
-                        .select("ul")
-                        .select("li");
-                Elements classify = document.select("div.focus-list")
-                        .select("ul.focus-tab")
-                        .select("li");
-                Elements classifyDetail = document.select("div.focus-con")
-                        .select("ul");
-
-                Elements actives = document.select("div.news-flash")
-                        .select("dl")
-                        .select("dd")
-                        .select("p")
-                        .select("a");
-                Elements bookHots = document.select("div.img-list")
-                        .select("ul")
-                        .select("li");
+                        .select("div.bx-viewport")
+                        .select("div.main")
+                        .select("div.bx-clone");
+//                Elements classify = document.select("div.focus-list")
+//                        .select("ul.focus-tab")
+//                        .select("li");
+//                Elements classifyDetail = document.select("div.focus-con")
+//                        .select("ul");
+//
+//                Elements actives = document.select("div.news-flash")
+//                        .select("dl")
+//                        .select("dd")
+//                        .select("p")
+//                        .select("a");
+//                Elements bookHots = document.select("div.img-list")
+//                        .select("ul")
+//                        .select("li");
 
 
                 //整个的首页所有的值得bean
@@ -300,141 +300,141 @@ public class IndexFragment extends BaseFragment implements BGABanner.Adapter<Ima
 //                indexBean = new IndexBean();
 
 
-                List<BookClassify> bookClassifies = new ArrayList<>();
-                //这是书籍分类
-                for (int i = 0; i < classify.size(); i++) {
-                    BookClassify bookClassify = new BookClassify();
-                    String classifyName = classify.get(i).select("a").text();
-                    bookClassify.setBookInfoType(classifyName);
-                    bookClassifies.add(bookClassify);
-
-                }
-
-                for (int i = 0; i < classifyDetail.size(); i++) {
-                    Elements classifyInfos = classifyDetail.get(i).select("li");
-                    List<BookInfo> bookInfos = new ArrayList<>();
-                    for (int j = 0; j < classifyInfos.size(); j++) {
-                        BookInfo bookInfo = new BookInfo();
-                        String imgurl;
-                                if (i==0){
-                                    imgurl= classifyInfos.get(j).select("dl")
-                                            .select("dt")
-                                            .select("a")
-                                            .select("img")
-                                            .attr("src");
-                                }else{
-                                    imgurl= classifyInfos.get(j).select("dl")
-                                            .select("dt")
-                                            .select("a")
-                                            .select("img")
-                                            .attr("data-src");
-                                     }
-
-                                     String detailurl=classifyInfos.get(j).select("dl")
-                                             .select("dt")
-                                             .select("a")
-                                             .attr("href");
-
-                        String name = classifyInfos.get(j).select("dl")
-                                .select("dd")
-                                .select("h3")
-                                .select("a")
-                                .text();
-                        String type = classifyInfos.get(j).select("dl")
-                                .select("dd")
-                                .select("p")
-                                .get(0)
-                                .text();
-                        String content = classifyInfos.get(j).select("dl")
-                                .select("dd")
-                                .select("p")
-                                .get(1)
-                                .text();
-                        bookInfo.setBookImg(imgurl);
-                        bookInfo.setBookIntroduce(content);
-                        bookInfo.setBookTitle(name);
-                        bookInfo.setBookType(type);
-                        bookInfo.setDetailurl(detailurl);
-                        bookInfos.add(bookInfo);
-
-
-                    }
-                    bookClassifies.get(i).setBookInfos(bookInfos);
-                }
-                //先赋值选择(初始化)
-                for (int i = 0; i < bookClassifies.size(); i++) {
-                    if (i == 0) {
-                        bookClassifies.get(i).setSelect(true);
-                    } else {
-                        bookClassifies.get(i).setSelect(false);
-                    }
-                }
-                indexBean.setBookClassifies(bookClassifies);
-                indexBean.setType(0);
-                indexBeanList.add(indexBean);
-                indexBean = new IndexBean();
-
-
-                //这是活动快讯
-                //①先添加title
-                BookActive bookActive = new BookActive();
-                String activeTitle = document.select("div.news-flash")
-                        .select("dl")
-                        .select("dt")
-                        .text();
-                bookActive.setTitle(activeTitle);
-                //②再添加所有
-                List<String> activesList = new ArrayList<>();
-                for (int i = 0; i < actives.size(); i++) {
-                    String activeName = actives.get(i).text();
-                    activesList.add(activeName);
-                }
-                bookActive.setContent(activesList);
-                indexBean.setBookActive(bookActive);
-                indexBean.setType(1);
-                indexBeanList.add(indexBean);
-                indexBean = new IndexBean();
-
-
-                //这是热门精选
-                //①先加上标题
-                BookHot bookHot = new BookHot();
-                String hotTitle = document.select("div.img-list")
-                        .select("div.bdrbox-tit2")
-                        .select("h2")
-                        .text();
-                bookHot.setTitle(hotTitle);
-
-                //②加上内容
-                List<BookHotInfo> bookHotInfos = new ArrayList<>();
-                for (int i = 0; i < bookHots.size(); i++) {
-                    BookHotInfo bookHotInfo = new BookHotInfo();
-                    String hotInfoTitle = bookHots.get(i)
-                            .select("a")
-                            .attr("title");
-                    String hotInfoImg = bookHots.get(i)
-                            .select("a")
-                            .select("img")
-                            .attr("data-src");
-                    String detailurl=bookHots.get(i)
-                            .select("a")
-                            .attr("href");
-                    String author = bookHots.get(i)
-                            .select("span")
-                            .select("a")
-                            .text();
-                    bookHotInfo.setHotAuthor(author);
-                    bookHotInfo.setHotImg(hotInfoImg);
-                    bookHotInfo.setHotTitle(hotInfoTitle);
-                    bookHotInfo.setDetailurl(detailurl);
-                    bookHotInfos.add(bookHotInfo);
-
-                }
-                bookHot.setBookHotInfos(bookHotInfos);
-                indexBean.setBookHot(bookHot);
-                indexBean.setType(2);
-                indexBeanList.add(indexBean);
-                indexBean = new IndexBean();
+//                List<BookClassify> bookClassifies = new ArrayList<>();
+//                //这是书籍分类
+//                for (int i = 0; i < classify.size(); i++) {
+//                    BookClassify bookClassify = new BookClassify();
+//                    String classifyName = classify.get(i).select("a").text();
+//                    bookClassify.setBookInfoType(classifyName);
+//                    bookClassifies.add(bookClassify);
+//
+//                }
+//
+//                for (int i = 0; i < classifyDetail.size(); i++) {
+//                    Elements classifyInfos = classifyDetail.get(i).select("li");
+//                    List<BookInfo> bookInfos = new ArrayList<>();
+//                    for (int j = 0; j < classifyInfos.size(); j++) {
+//                        BookInfo bookInfo = new BookInfo();
+//                        String imgurl;
+//                                if (i==0){
+//                                    imgurl= classifyInfos.get(j).select("dl")
+//                                            .select("dt")
+//                                            .select("a")
+//                                            .select("img")
+//                                            .attr("src");
+//                                }else{
+//                                    imgurl= classifyInfos.get(j).select("dl")
+//                                            .select("dt")
+//                                            .select("a")
+//                                            .select("img")
+//                                            .attr("data-src");
+//                                     }
+//
+//                                     String detailurl=classifyInfos.get(j).select("dl")
+//                                             .select("dt")
+//                                             .select("a")
+//                                             .attr("href");
+//
+//                        String name = classifyInfos.get(j).select("dl")
+//                                .select("dd")
+//                                .select("h3")
+//                                .select("a")
+//                                .text();
+//                        String type = classifyInfos.get(j).select("dl")
+//                                .select("dd")
+//                                .select("p")
+//                                .get(0)
+//                                .text();
+//                        String content = classifyInfos.get(j).select("dl")
+//                                .select("dd")
+//                                .select("p")
+//                                .get(1)
+//                                .text();
+//                        bookInfo.setBookImg(imgurl);
+//                        bookInfo.setBookIntroduce(content);
+//                        bookInfo.setBookTitle(name);
+//                        bookInfo.setBookType(type);
+//                        bookInfo.setDetailurl(detailurl);
+//                        bookInfos.add(bookInfo);
+//
+//
+//                    }
+//                    bookClassifies.get(i).setBookInfos(bookInfos);
+//                }
+//                //先赋值选择(初始化)
+//                for (int i = 0; i < bookClassifies.size(); i++) {
+//                    if (i == 0) {
+//                        bookClassifies.get(i).setSelect(true);
+//                    } else {
+//                        bookClassifies.get(i).setSelect(false);
+//                    }
+//                }
+//                indexBean.setBookClassifies(bookClassifies);
+//                indexBean.setType(0);
+//                indexBeanList.add(indexBean);
+//                indexBean = new IndexBean();
+//
+//
+//                //这是活动快讯
+//                //①先添加title
+//                BookActive bookActive = new BookActive();
+//                String activeTitle = document.select("div.news-flash")
+//                        .select("dl")
+//                        .select("dt")
+//                        .text();
+//                bookActive.setTitle(activeTitle);
+//                //②再添加所有
+//                List<String> activesList = new ArrayList<>();
+//                for (int i = 0; i < actives.size(); i++) {
+//                    String activeName = actives.get(i).text();
+//                    activesList.add(activeName);
+//                }
+//                bookActive.setContent(activesList);
+//                indexBean.setBookActive(bookActive);
+//                indexBean.setType(1);
+//                indexBeanList.add(indexBean);
+//                indexBean = new IndexBean();
+//
+//
+//                //这是热门精选
+//                //①先加上标题
+//                BookHot bookHot = new BookHot();
+//                String hotTitle = document.select("div.img-list")
+//                        .select("div.bdrbox-tit2")
+//                        .select("h2")
+//                        .text();
+//                bookHot.setTitle(hotTitle);
+//
+//                //②加上内容
+//                List<BookHotInfo> bookHotInfos = new ArrayList<>();
+//                for (int i = 0; i < bookHots.size(); i++) {
+//                    BookHotInfo bookHotInfo = new BookHotInfo();
+//                    String hotInfoTitle = bookHots.get(i)
+//                            .select("a")
+//                            .attr("title");
+//                    String hotInfoImg = bookHots.get(i)
+//                            .select("a")
+//                            .select("img")
+//                            .attr("data-src");
+//                    String detailurl=bookHots.get(i)
+//                            .select("a")
+//                            .attr("href");
+//                    String author = bookHots.get(i)
+//                            .select("span")
+//                            .select("a")
+//                            .text();
+//                    bookHotInfo.setHotAuthor(author);
+//                    bookHotInfo.setHotImg(hotInfoImg);
+//                    bookHotInfo.setHotTitle(hotInfoTitle);
+//                    bookHotInfo.setDetailurl(detailurl);
+//                    bookHotInfos.add(bookHotInfo);
+//
+//                }
+//                bookHot.setBookHotInfos(bookHotInfos);
+//                indexBean.setBookHot(bookHot);
+//                indexBean.setType(2);
+//                indexBeanList.add(indexBean);
+//                indexBean = new IndexBean();
 
 
                 Message msg = new Message();

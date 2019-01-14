@@ -63,6 +63,7 @@ public class NetvideoActivity extends BaseAppCompatActivity {
     protected void initData() {
         title.setText("视频");
         url = "http://9890.vod.myqcloud.com/9890_4e292f9a3dd011e6b4078980237cc3d3.f20.mp4";
+//        url="tv.sohu.com/upload/swf/20181031/Main.swf";
         //增加封面
         ImageView imageView = new ImageView(this);
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
