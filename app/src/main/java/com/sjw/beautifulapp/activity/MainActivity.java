@@ -45,6 +45,7 @@ import com.sjw.beautifulapp.base.BaseSharedPreferences;
 import com.sjw.beautifulapp.fragment.EpisodeFragment;
 import com.sjw.beautifulapp.fragment.FoodFragment;
 import com.sjw.beautifulapp.fragment.GirlFragment;
+import com.sjw.beautifulapp.fragment.Index2Fragment;
 import com.sjw.beautifulapp.fragment.IndexFragment;
 import com.sjw.beautifulapp.newtools.baidulocation.LocationService;
 import com.sjw.beautifulapp.newtools.permission.PermissionSetting;
@@ -182,7 +183,7 @@ public class MainActivity extends BaseFragmentActivity implements View.OnClickLi
         seticonName(islogin);
 
         fragmentList = new ArrayList<>();
-        fragmentList.add(new IndexFragment());
+        fragmentList.add(new Index2Fragment());
         fragmentList.add(new GirlFragment());
         fragmentList.add(new EpisodeFragment());
         fragmentList.add(new FoodFragment());
