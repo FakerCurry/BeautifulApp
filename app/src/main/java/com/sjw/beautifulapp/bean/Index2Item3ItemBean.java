@@ -1,6 +1,8 @@
 package com.sjw.beautifulapp.bean;
 
-public class Index2Item3ItemBean {
+import java.io.Serializable;
+
+public class Index2Item3ItemBean implements Serializable {
 
     String  imgUrl;
     String title;

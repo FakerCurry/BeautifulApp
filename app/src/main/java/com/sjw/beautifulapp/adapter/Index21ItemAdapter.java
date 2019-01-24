@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.sjw.beautifulapp.R;
 import com.sjw.beautifulapp.activity.IndexDetailActivity;
 import com.sjw.beautifulapp.bean.Index2Item1ItemBean;
@@ -44,10 +45,13 @@ public class Index21ItemAdapter extends RecyclerView.Adapter<Index21ItemAdapter.
 
         final Index2Item1ItemBean bean=list.get(position);
 
-        //        RequestOptions options = new RequestOptions();
+                RequestOptions options = new RequestOptions()
+                        .placeholder(R.drawable.pic_no_square)
+                        .error(R.drawable.pic_no_square);
+
         Glide.with(context)
                 .load(bean.getImgUrl())
-//                .apply(options)
+                .apply(options)
                 .into(holder.img);
 
 

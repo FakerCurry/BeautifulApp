@@ -1,6 +1,10 @@
 package com.sjw.beautifulapp.adapter;
 
 import android.content.Context;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,27 +21,43 @@ import com.sjw.beautifulapp.bean.Index2Bean;
 import com.sjw.beautifulapp.bean.Index2Item1ItemBean;
 import com.sjw.beautifulapp.bean.Index2Item2Bean;
 import com.sjw.beautifulapp.bean.Index2Item2ItemBean;
+import com.sjw.beautifulapp.bean.Index2Item3ItemBean;
+import com.sjw.beautifulapp.bean.Index2Item3Page;
 import com.sjw.beautifulapp.bean.IndexBean;
+import com.sjw.beautifulapp.bean.TabsBean;
+import com.sjw.beautifulapp.fragment.Index2EveryFragment;
+import com.sjw.beautifulapp.fragment.Index2Fragment;
 import com.sjw.beautifulapp.view.HorizontalPageLayoutManager;
 import com.sjw.beautifulapp.view.PagingItemDecoration;
 import com.sjw.beautifulapp.view.PagingScrollHelper;
+import com.sjw.beautifulapp.view.TopTabView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class Index2MultiItemAdapter extends BaseRecyclerAdapter<Index2MultiItemAdapter.SimpleAdapterViewHolder> implements PagingScrollHelper.onPageChangeListener {
+public class Index2MultiItemAdapter extends BaseRecyclerAdapter<Index2MultiItemAdapter.SimpleAdapterViewHolder> implements PagingScrollHelper.onPageChangeListener, TopTabView.TopTabListener, ViewPager.OnPageChangeListener {
     private List<Index2Bean> list;
     private Context mContext;
 
     private Index21ItemAdapter index21ItemAdapter;
     private Index22ItemAdapter index22ItemAdapter;
+    private Index23ItemAdapter index23ItemAdapter;
+
+
     private HorizontalPageLayoutManager horizontalPageLayoutManager = null;
     private PagingItemDecoration pagingItemDecoration = null;
+    FragmentManager supportFragmentManager;
     PagingScrollHelper scrollHelper;
-    public Index2MultiItemAdapter(List<Index2Bean> list, Context context) {
+
+    private ViewPager viewPager;
+
+    private TopTabView ttView;
+    public Index2MultiItemAdapter(List<Index2Bean> list, Context context, FragmentManager supportFragmentManager) {
         this.list = list;
         this.mContext = context;
+        this.supportFragmentManager=supportFragmentManager;
         horizontalPageLayoutManager = new HorizontalPageLayoutManager(2, 2);
         pagingItemDecoration = new PagingItemDecoration(mContext, horizontalPageLayoutManager);
         scrollHelper= new PagingScrollHelper();
@@ -81,6 +101,52 @@ public class Index2MultiItemAdapter extends BaseRecyclerAdapter<Index2MultiItemA
 
         } else {
 
+            List<TabsBean> list=new ArrayList<>();
+            list=bean.getItem3Bean().getTabArr();
+
+            List<Index2Item3Page> index2Item3PageList=bean.getItem3Bean().getIndex2Item3PageList();
+
+            index23ItemAdapter=new Index23ItemAdapter(list,mContext);
+
+            GridLayoutManager gridLayoutManager=new GridLayoutManager(mContext,list.size());
+
+            holder.recyclerview3.setLayoutManager(gridLayoutManager);
+            holder.recyclerview3.setAdapter(index23ItemAdapter);
+            holder.item_index2_rv3_lefttv.setText(bean.getItem3Bean().getTitle());
+
+
+            List<Fragment> listFragmentList=new ArrayList<>();
+
+            for (int i=0;i<index2Item3PageList.size();i++){
+
+                List<Index2Item3ItemBean> index2Item3ItemBeanList=index2Item3PageList.get(i).getList();
+
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("itemList", (Serializable) index2Item3ItemBeanList);
+                Fragment fg = Index2EveryFragment.newInstance(bundle);
+
+                listFragmentList.add(fg);
+            }
+
+
+
+
+
+            holder.vp.setAdapter(new Index2FragmentStateAdapter(supportFragmentManager, listFragmentList));
+
+            holder.vp.setOnPageChangeListener(this);
+            List<String> tabList=new ArrayList<>();
+            for (int i=0;i<list.size();i++){
+
+                tabList.add(list.get(i).getTabText());
+
+            }
+
+
+            holder.toptabview.setTabList(tabList,mContext,0);
+
+            holder.toptabview.setOnselectTabListener(this);
+
         }
 
 
@@ -120,13 +186,39 @@ public class Index2MultiItemAdapter extends BaseRecyclerAdapter<Index2MultiItemA
                     R.layout.item_index2_rv2, parent, false);
         } else {
 
-
+            v = LayoutInflater.from(parent.getContext()).inflate(
+                    R.layout.item_index2_rv3, parent, false);
         }
         return new SimpleAdapterViewHolder(v, viewType, true);
     }
 
     @Override
     public void onPageChange(int index) {
+
+
+
+
+    }
+
+    @Override
+    public void onSlect(int position) {
+        viewPager.setCurrentItem(position);
+
+
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+        ttView.setSelectPosition(position);
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
 
     }
 
@@ -135,7 +227,11 @@ public class Index2MultiItemAdapter extends BaseRecyclerAdapter<Index2MultiItemA
         TextView item_index2_rv1_lefttv;
          TextView item_index2_rv1_righttv;
          RecyclerView recyclerview;
+        TextView item_index2_rv3_lefttv;
+        RecyclerView recyclerview3;
+        TopTabView toptabview;
 
+        ViewPager vp;
 
         public SimpleAdapterViewHolder(View itemView, boolean isItem) {
             super(itemView);
@@ -162,8 +258,12 @@ public class Index2MultiItemAdapter extends BaseRecyclerAdapter<Index2MultiItemA
                         recyclerview=(RecyclerView)itemView.findViewById(R.id.recyclerview);
                         break;
                     default:
-
-
+                        item_index2_rv3_lefttv=(TextView)itemView.findViewById(R.id.item_index2_rv3_lefttv);
+                        recyclerview3=(RecyclerView)itemView.findViewById(R.id.recyclerview3);
+                        vp=(ViewPager)itemView.findViewById(R.id.vp);
+                        viewPager=vp;
+                        toptabview=(TopTabView)itemView.findViewById(R.id.toptabview);
+                        ttView=toptabview;
                         break;
                 }
             }

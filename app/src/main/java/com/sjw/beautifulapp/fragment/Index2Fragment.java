@@ -36,8 +36,12 @@ import com.sjw.beautifulapp.bean.Index2Item2Bean;
 import com.sjw.beautifulapp.bean.Index2Item2ItemBean;
 import com.sjw.beautifulapp.bean.Index2Item2Page;
 import com.sjw.beautifulapp.bean.Index2Item3Bean;
+import com.sjw.beautifulapp.bean.Index2Item3ItemBean;
+import com.sjw.beautifulapp.bean.Index2Item3Page;
 import com.sjw.beautifulapp.bean.IndexBannerBean;
 import com.sjw.beautifulapp.bean.IndexBean;
+import com.sjw.beautifulapp.bean.TabsBean;
+import com.umeng.commonsdk.debug.E;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -45,6 +49,7 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;
@@ -108,6 +113,8 @@ public class Index2Fragment extends BaseFragment implements BGABanner.Adapter<Im
         index2Item2Bean=new Index2Item2Bean();
 
 
+
+
 //初始化
         init();
     }
@@ -115,7 +122,7 @@ public class Index2Fragment extends BaseFragment implements BGABanner.Adapter<Im
     private void init() {
         recyclerView.setHasFixedSize(true);
 
-        adapter = new Index2MultiItemAdapter(index2BeanList, getActivity());
+        adapter = new Index2MultiItemAdapter(index2BeanList, getActivity(),getActivity().getSupportFragmentManager());
 
         // 设置静默加载模式
 //        xRefreshView1.setSilenceLoadMore();
@@ -543,6 +550,143 @@ public class Index2Fragment extends BaseFragment implements BGABanner.Adapter<Im
                     }
 
 
+
+
+
+
+
+
+                }
+
+
+
+
+
+
+                //第三种item（排行）
+                for (int i=0;i<item1item.size();i++){
+                    Elements item1=item1item.get(i)
+                            .select("ul.rank-list");
+
+                    if(item1.size()!=0){
+
+                        //每次重新设置
+                        Index2Bean index2BeanNew=new Index2Bean();
+                        Index2Item3Bean bean=new Index2Item3Bean();
+
+                        String titile=item1item.get(i).select("div.manga-list-title")
+                                .text().replace("\"","").trim().substring(0,3);
+
+                        Elements tabs=item1item.get(i).select("div.manga-list-title")
+                                .select("div.manga-list-title-right").
+                                select("a");
+
+                        List<TabsBean> tabList=new ArrayList<>();
+                        for (int k=0;k<tabs.size();k++){
+                            TabsBean tabsBean=new TabsBean();
+                            String tabText=tabs.get(k).text();
+                            tabsBean.setTabText(tabText);
+                            if (k==0){
+                                tabsBean.setSelect(true);
+
+                            }else {
+
+                                tabsBean.setSelect(false);
+                            }
+
+                            tabList.add(tabsBean);
+
+                        }
+
+
+
+                        Elements ranklist=item1item.get(i).select("ul.rank-list")
+                                .select("div.swiper-container4")
+                                .select("div.swiper-wrapper")
+                                .select("div.swiper-slide");
+
+
+
+
+
+
+                        List<Index2Item3Page>  item3PageList = new ArrayList<>();
+
+
+
+                        for (int j=0;j<ranklist.size();j++){
+                            Elements rankEs=ranklist.get(j).select("li");
+
+
+                            Index2Item3Page item3PageBean=new Index2Item3Page();
+
+
+
+                            List<Index2Item3ItemBean>  itemBean3List=new ArrayList<>();
+
+                            for (int k=0;k<rankEs.size();k++){
+
+                                Index2Item3ItemBean bean3=new Index2Item3ItemBean();
+
+                                String detail="http://m.1kkk.com"+
+                                        rankEs.get(k)
+                                                .select("a").attr("href");
+                                String imgUrl=rankEs.get(k).select("a")
+                                        .select("div.rank-list-cover")
+                                        .select("img")
+                                        .attr("src");
+
+                                String title=rankEs.get(k).select("a")
+                                        .select("div.rank-list-info")
+                                        .select("div.rank-list-info-right")
+                                        .select("p.rank-list-info-right-title")
+                                        .text();
+
+                                String content=rankEs.get(k).select("a")
+                                        .select("div.rank-list-info")
+                                        .select("div.rank-list-info-right")
+                                        .select("p.rank-list-info-right-subtitle")
+                                        .text();
+
+                                bean3.setContent(content);
+                                bean3.setDetailUrl(detail);
+                                bean3.setImgUrl(imgUrl);
+                                bean3.setTitle(title);
+
+                                itemBean3List.add(bean3);
+
+
+                            }
+
+                            item3PageBean.setPage(j+"");
+                            item3PageBean.setList(itemBean3List);
+
+
+                            item3PageList.add(item3PageBean);
+
+
+
+
+
+                        }
+
+
+
+                        bean.setTitle(titile);
+                        bean.setTabArr(tabList);
+
+                        bean.setIndex2Item3PageList(item3PageList);
+
+                        index2BeanNew.setType(2);
+                        index2BeanNew.setItem3Bean(bean);
+
+
+                        index2BeanList.add(index2BeanNew);
+
+
+
+
+                    }
 
 
 

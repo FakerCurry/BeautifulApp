@@ -14,4 +14,6 @@
     <color name="black">#000000</color>
     <color name="white_transparent_70">#BBFFFFFF</color>
     <color name="black_transparent">#99000000</color>
+    <color name="tab_line_color">#aaaaaa</color>
+    <color name="tab_bg">#dddddd</color>
 </resources>

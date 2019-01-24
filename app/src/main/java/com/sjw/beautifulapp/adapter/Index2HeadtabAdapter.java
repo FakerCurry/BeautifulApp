@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.sjw.beautifulapp.R;
 import com.sjw.beautifulapp.activity.IndexDetailActivity;
 import com.sjw.beautifulapp.bean.Index2HeadtabBean;
@@ -43,10 +44,15 @@ public class Index2HeadtabAdapter extends RecyclerView.Adapter<Index2HeadtabAdap
 
         final Index2HeadtabBean bean=list.get(position);
 
-        //        RequestOptions options = new RequestOptions();
+                RequestOptions options = new RequestOptions();
+
+                options.placeholder(R.drawable.pic_no_circle);
+                options.error(R.drawable.pic_no_circle);
         Glide.with(context)
+
                 .load(bean.getImgUrl())
-//                .apply(options)
+
+                .apply(options)
                 .into(holder.tabimg);
 
 

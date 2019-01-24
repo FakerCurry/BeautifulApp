@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:padding="5dp"
+        android:layout_height="40dp">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_centerVertical="true">
+
+            <View android:layout_width="3dp"
+                android:layout_height="match_parent"
+                android:background="#ff4500"
+                >
+
+            </View>
+
+            <TextView
+                android:id="@+id/item_index2_rv3_lefttv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="好好好"
+                android:layout_marginLeft="10dp"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                />
+        </LinearLayout>
+
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="horizontal"-->
+           <!--android:background="@drawable/shape_item_index2_rv3"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--&gt;-->
+
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerview3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginRight="10dp"
+            android:visibility="gone"
+            />
+            <com.sjw.beautifulapp.view.TopTabView
+                android:id="@+id/toptabview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="1dp"
+                android:layout_alignParentRight="true">
+
+
+            </com.sjw.beautifulapp.view.TopTabView>
+
+
+
+        <!--</LinearLayout>-->
+
+    </RelativeLayout>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+
+        />
+</LinearLayout>

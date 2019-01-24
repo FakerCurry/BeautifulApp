@@ -5,8 +5,8 @@ import java.util.List;
 public class Index2Item3Bean {
 
     String title;
-    List<String> tabArr;
-    List<Index2Item3ItemBean> item3ItemBeanList;
+    List<TabsBean> tabArr;
+    List<Index2Item3Page> index2Item3PageList;
 
     public String getTitle() {
         return title;
@@ -16,19 +16,20 @@ public class Index2Item3Bean {
         this.title = title;
     }
 
-    public List<String> getTabArr() {
+
+    public List<TabsBean> getTabArr() {
         return tabArr;
     }
 
-    public void setTabArr(List<String> tabArr) {
+    public void setTabArr(List<TabsBean> tabArr) {
         this.tabArr = tabArr;
     }
 
-    public List<Index2Item3ItemBean> getItem3ItemBeanList() {
-        return item3ItemBeanList;
+    public List<Index2Item3Page> getIndex2Item3PageList() {
+        return index2Item3PageList;
     }
 
-    public void setItem3ItemBeanList(List<Index2Item3ItemBean> item3ItemBeanList) {
-        this.item3ItemBeanList = item3ItemBeanList;
+    public void setIndex2Item3PageList(List<Index2Item3Page> index2Item3PageList) {
+        this.index2Item3PageList = index2Item3PageList;
     }
 }
