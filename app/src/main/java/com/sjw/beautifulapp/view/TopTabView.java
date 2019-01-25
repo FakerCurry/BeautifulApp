@@ -80,7 +80,12 @@ public class TopTabView extends LinearLayout {
         this.tabList = tabList;
         tvTabsArr=new TextView[tabList.size()];
 
-        initView(context,selectP);
+    if(getChildCount()>0){
+
+        removeAllViews();
+    }
+
+      initView(context,selectP);
 
     }
 
