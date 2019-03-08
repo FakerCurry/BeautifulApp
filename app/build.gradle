@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId "com.sjw.beautifulapp"
-        minSdkVersion 16
+        minSdkVersion 18
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
@@ -128,15 +128,17 @@ dependencies {
 
     // add library
     compile 'org.greenrobot:greendao-generator:3.2.2'
+
     //百度地图
     implementation files('libs/BaiduLBS_Android.jar')
+
     //方法数太多
     implementation 'com.android.support:multidex:1.0.3'
 
     //webview 框架
     implementation 'com.just.agentweb:agentweb:4.0.2'
 
-//完整版引入
+    //完整版引入
     implementation 'com.shuyu:GSYVideoPlayer:6.0.1'
 
     //友盟推送 分享 登陆等
@@ -144,6 +146,7 @@ dependencies {
     implementation 'com.umeng.sdk:utdid:1.1.5.3'
     implementation 'com.umeng.sdk:common:latest.integration'
     implementation 'com.umeng.sdk:analytics:latest.integration'
+
     //PushSDK
     implementation 'com.umeng.sdk:push:4.2.0'
     implementation files('libs/umeng-share-core-6.9.2.jar')
@@ -152,5 +155,8 @@ dependencies {
     implementation files('libs/umeng-share-wechat-simplify-6.9.2.jar')
     implementation files('libs/umeng-sharetool-6.9.2.jar')
     implementation files('libs/umeng-shareboard-widget-6.9.2.jar')
-
+    implementation files('libs/BaiduTraceSDK_v3_0_8.jar')
+//    implementation files('libs/bos-android-sdk-1.0.3.jar')
+//    implementation files('libs/okhttp-3.8.1.jar')
+//    implementation files('libs/okio-1.13.0.jar')
 }

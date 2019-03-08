@@ -1,6 +1,7 @@
 package com.sjw.beautifulapp.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -11,11 +12,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.andview.refreshview.recyclerview.BaseRecyclerAdapter;
 import com.sjw.beautifulapp.R;
+import com.sjw.beautifulapp.activity.IndexDetailActivity;
 import com.sjw.beautifulapp.bean.BookHotInfo;
 import com.sjw.beautifulapp.bean.Index2Bean;
 import com.sjw.beautifulapp.bean.Index2Item1ItemBean;
@@ -79,6 +82,15 @@ public class Index2MultiItemAdapter extends BaseRecyclerAdapter<Index2MultiItemA
             GridLayoutManager gridLayoutManager=new GridLayoutManager(mContext,2);
             holder.recyclerview.setLayoutManager(gridLayoutManager);
 
+            holder.right_more_ll.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent=new Intent(mContext,IndexDetailActivity.class);
+                    intent.putExtra("index_detail_url",bean.getItem1Bean().getTitle2Detail());
+                    mContext.startActivity(intent);
+                }
+            });
+
 
         } else if (type == 1) {
 
@@ -96,6 +108,14 @@ public class Index2MultiItemAdapter extends BaseRecyclerAdapter<Index2MultiItemA
             LinearLayoutManager linearLayoutManager=new LinearLayoutManager(mContext);
             linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
             holder.recyclerview.setLayoutManager(linearLayoutManager);
+            holder.right_more_ll.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent=new Intent(mContext,IndexDetailActivity.class);
+                    intent.putExtra("index_detail_url",bean.getItem2Bean().getTitle2Detail());
+                    mContext.startActivity(intent);
+                }
+            });
 
 
 
@@ -233,6 +253,8 @@ public class Index2MultiItemAdapter extends BaseRecyclerAdapter<Index2MultiItemA
 
         ViewPager vp;
 
+        LinearLayout right_more_ll;
+
         public SimpleAdapterViewHolder(View itemView, boolean isItem) {
             super(itemView);
             init(itemView, -1, isItem);
@@ -251,11 +273,14 @@ public class Index2MultiItemAdapter extends BaseRecyclerAdapter<Index2MultiItemA
                         item_index2_rv1_righttv=(TextView)itemView.findViewById(R.id.item_index2_rv1_righttv);
                         recyclerview=(RecyclerView)itemView.findViewById(R.id.recyclerview);
 
+                        right_more_ll=(LinearLayout)itemView.findViewById(R.id.right_more_ll);
+
                         break;
                     case 1:
                         item_index2_rv1_lefttv=(TextView)itemView.findViewById(R.id.item_index2_rv1_lefttv);
                         item_index2_rv1_righttv=(TextView)itemView.findViewById(R.id.item_index2_rv1_righttv);
                         recyclerview=(RecyclerView)itemView.findViewById(R.id.recyclerview);
+                        right_more_ll=(LinearLayout)itemView.findViewById(R.id.right_more_ll);
                         break;
                     default:
                         item_index2_rv3_lefttv=(TextView)itemView.findViewById(R.id.item_index2_rv3_lefttv);

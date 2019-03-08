@@ -179,6 +179,9 @@ public class Index2Fragment extends BaseFragment implements BGABanner.Adapter<Im
     }
 
     private void optinData() {
+        //清空原来的
+        index2BeanList.clear();
+
 
         new Thread(new LoadThread()).start();
 
